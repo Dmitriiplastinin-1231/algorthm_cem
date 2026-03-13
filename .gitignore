@@ -1,0 +1,4 @@
+# Generated artifacts from trajectory simulation
+trajectory_plot.png
+*.pyc
+__pycache__/
