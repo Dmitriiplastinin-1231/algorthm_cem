@@ -231,7 +231,7 @@ def build_ode(phase: float = 0.0) -> callable:
         # dt_actual is the delay-buffer resolution (DT_HISTORY), which is also
         # the effective sampling period for the discrete control loop. Using a
         # fixed dt here is consistent with the discrete-time controller model
-        # described in Greensite (NASA CR-820, section 9.2).
+        # described in Blakelock (1991), ch. 3.
         delta_prev = state_cache["delta_prev"]
         dt_actual = DT_HISTORY
         delta_dot = (delta_cmd - delta_prev) / dt_actual
@@ -346,7 +346,7 @@ def run_simulation(phase: float = 0.0, t_end: float = T_END) -> dict:
         [0.0, t_end],
         state0,
         method="RK45",
-        max_step=0.05,      # 50 ms max step — per Frosch & Vallely methodology
+        max_step=0.05,      # 50 ms max step — Dormand & Prince (1980) adaptive step control
         rtol=1e-6,
         atol=1e-8,
         dense_output=False,
